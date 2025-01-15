@@ -12,6 +12,9 @@
 
 This project demonstrates a **React Native** application built with **Expo**, featuring a **Drawer Navigator** as the primary navigation. It contains a **Bottom Tab Navigator** and nested **Stack Navigators**, with animations powered by **react-native-reanimated**.
 
+### Please find the attached video for your reference
+
+
 ### Navigation Structure:
 
 - **Drawer Menu** (Parent Component)
@@ -58,14 +61,6 @@ This project demonstrates a **React Native** application built with **Expo**, fe
 
 ---
 
-## Requirements
-
-- Built with **Expo** for faster development and deployment.
-- Uses **TypeScript** for strong type safety.
-- Integrates **react-native-reanimated** for custom animations in the drawer.
-
----
-
 ## Installation and Setup
 
 ### Prerequisites
@@ -86,14 +81,15 @@ Ensure the following tools are installed on your system:
    ```
 
 2. Install dependencies:
-  ```bash
+  
+    ```bash
     yarn install
     # or
     npm install
     ```
 
 3. Start the Expo server:
-  ```bash
+    ```bash
     yarn install
     # or
     npm install
@@ -107,10 +103,23 @@ Ensure the following tools are installed on your system:
     ```
 
 ## Folder Structure
-  src/
-  ├── components/         # Custom UI components (e.g., Animated Drawer)
-  ├── navigation/         # Navigation configuration (Drawer, Tabs, Stacks)
-  ├── screens/            # App screens (Screen1, Screen2, Contact)
-  ├── utils/              # Utility functions and constants
-  └── App.tsx             # Entry point
+    src/
+    ├── components/         # Custom UI components (e.g., Animated Drawer)
+    ├── navigation/         # Navigation configuration (Drawer, Tabs, Stacks)
+    ├── screens/            # App screens (Screen1, Screen2, Contact)
+    ├── utils/              # Utility functions and constants
+    └── App.tsx             # Entry point
+
+
+## Tools and Libraries Used
+    expo:                             Development environment for React Native.
+    @react-navigation/native:         Navigation library.
+    react-native-reanimated:          Smooth animations for the custom drawer.
+    @react-navigation/drawer:         Drawer navigation integration.
+    @react-navigation/bottom-tabs:    Bottom tab navigation.
+    @react-navigation/native-stack:   Stack navigation.
+    react-native-vector-icons:        Icon library.
+
+
+
 
