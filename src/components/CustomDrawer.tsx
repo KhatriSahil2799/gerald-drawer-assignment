@@ -1,8 +1,8 @@
 import { View, Text, TouchableOpacity, StyleSheet } from "react-native";
 import { DrawerContentComponentProps } from "@react-navigation/drawer";
 import React from "react";
-import { BottomTabParamList, HomeStackParamList } from "../types/navigation";
-import { getActiveScreen } from "../utils/utils";
+ import { getActiveScreen } from "../utils/utils";
+import { HomeStackParamList } from "../utils/types";
 
 // Define menu item type based on your navigation structure
 interface MenuItem {
@@ -96,7 +96,7 @@ const CustomDrawer = ({
           navigation.closeDrawer();
         }}
       >
-        <Text style={styles.menuText}>{'By Sahil khatri'}</Text>
+        <Text style={styles.menuText}>Sign Out</Text>
       </TouchableOpacity>
     </View>
   );
@@ -105,40 +105,42 @@ const CustomDrawer = ({
 const styles = StyleSheet.create({
   drawerContainer: {
     flex: 1,
-    backgroundColor: "#13122E",
     paddingVertical: 30,
     paddingHorizontal: 20,
-    justifyContent: "center",
+    backgroundColor: "#13122E",
   },
   userName: {
-    fontSize: 20,
-    fontWeight: "bold",
+    fontSize: 28,
+    marginTop:40,
     color: "#fff",
-    marginBottom: 30,
+    fontWeight: "bold",
+    textAlign: "center", 
   },
   menuContainer: {
-    // marginBottom: "auto",
+    marginTop: 45,
   },
   menuItem: {
-    paddingVertical: 15,
-    paddingHorizontal: 10,
+    marginVertical:8,
     borderRadius: 10,
+    paddingVertical: 15, 
+    paddingHorizontal: 16
   },
   activeMenuItem: {
     backgroundColor: "#402c33",
   },
   menuText: {
-    fontSize: 16,
+    fontSize: 18,
     color: "#fff",
+    fontWeight:'400'
   },
   activeMenuText: {
     color: "#ff5a5f",
   },
   divider: {
     height: 1,
-    backgroundColor: "#fff",
     opacity: 0.3,
-    marginVertical: 20,
+    marginVertical: 40, 
+    backgroundColor: "#fff",
   },
 });
 

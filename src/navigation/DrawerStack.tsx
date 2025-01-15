@@ -26,7 +26,7 @@ function DrawerStack() {
       screenOptions={{
         ...SCREEN_OPTIONS,
         drawerStyle: {
-          width: width * 0.45,
+          width: width * 0.48,
         },
       }}
     >
