@@ -79,8 +79,8 @@ Ensure the following tools are installed on your system:
 1. Clone the repository:
 
    ```bash
-   git clone <repository_url>
-   cd <repository_folder>
+   git clone git@github.com:KhatriSahil2799/gerald-drawer-assignment.git
+   cd gerald-drawer-assignment
    ```
 
 2. Install dependencies:
