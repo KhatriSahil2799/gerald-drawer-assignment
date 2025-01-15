@@ -1,0 +1,2 @@
+
+export const TOP_DRAWER_Y_TRANSLATION_IN_PX  = 20
