@@ -11,8 +11,9 @@ const Contact  = () => {
   
   return (
     <View style={[styles.container, { paddingTop: top }]}>
-      <Header title="Screen 2" />
+      <Header title="Contact" />
       <View style={styles.content}>
+        <Text>Contact Screen</Text>
         <Pressable style={styles.button} onPress={navigation.goBack}>
           <Text style={styles.text}>Go back to Home Stack</Text>
         </Pressable>
@@ -29,6 +30,7 @@ const styles = StyleSheet.create({
   },
   content: {
     flex: 1,
+    rowGap:16,
     alignItems: "center",
     justifyContent: "center",
   },
