@@ -1,27 +1,17 @@
 import { View, Text, TouchableOpacity, StyleSheet } from "react-native";
 import { DrawerContentComponentProps } from "@react-navigation/drawer";
 import React from "react";
- import { getActiveScreen } from "../utils/utils";
+import { getActiveScreen } from "../utils/utils";
 import { HomeStackParamList } from "../utils/types";
 
-// Define menu item type based on your navigation structure
 interface MenuItem {
   label: string;
-  stack?: "Home"; // These are your bottom tab routes
-  screen?: keyof HomeStackParamList | 'Contact'; // Optional screen within Home stack
+  stack?: "Home";
+  screen?: keyof HomeStackParamList | "Contact";
   isActive?: boolean;
 }
 
-const CustomDrawer = ({
-  navigation,
-  state,
-  descriptors,
-}: DrawerContentComponentProps) => {
-  console.log(
-    "🚀 ~ CustomDrawer ~ { navigation, state,descriptors }:",
-    JSON.stringify({ navigation, state, descriptors }, null, 2)
-  );
-
+const CustomDrawer = ({ navigation, state }: DrawerContentComponentProps) => {
   const activeScreen = getActiveScreen(state);
 
   const menuItems: MenuItem[] = [
@@ -90,11 +80,7 @@ const CustomDrawer = ({
 
       <TouchableOpacity
         style={styles.menuItem}
-        onPress={() => {
-          // You might want to handle sign out logic here
-          // For now, just closing the drawer
-          navigation.closeDrawer();
-        }}
+        onPress={navigation.closeDrawer} // Closing the drawer on sign out
       >
         <Text style={styles.menuText}>Sign Out</Text>
       </TouchableOpacity>
@@ -111,19 +97,19 @@ const styles = StyleSheet.create({
   },
   userName: {
     fontSize: 28,
-    marginTop:40,
+    marginTop: 40,
     color: "#fff",
     fontWeight: "bold",
-    textAlign: "center", 
+    textAlign: "center",
   },
   menuContainer: {
     marginTop: 45,
   },
   menuItem: {
-    marginVertical:8,
+    marginVertical: 8,
     borderRadius: 10,
-    paddingVertical: 15, 
-    paddingHorizontal: 16
+    paddingVertical: 15,
+    paddingHorizontal: 16,
   },
   activeMenuItem: {
     backgroundColor: "#402c33",
@@ -131,7 +117,7 @@ const styles = StyleSheet.create({
   menuText: {
     fontSize: 18,
     color: "#fff",
-    fontWeight:'400'
+    fontWeight: "400",
   },
   activeMenuText: {
     color: "#ff5a5f",
@@ -139,7 +125,7 @@ const styles = StyleSheet.create({
   divider: {
     height: 1,
     opacity: 0.3,
-    marginVertical: 40, 
+    marginVertical: 40,
     backgroundColor: "#fff",
   },
 });

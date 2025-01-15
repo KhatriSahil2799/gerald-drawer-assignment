@@ -1,4 +1,4 @@
-import { StyleSheet } from "react-native";
+import { StyleSheet, useWindowDimensions } from "react-native";
 import React from "react";
 
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
@@ -22,11 +22,13 @@ const Tab = createBottomTabNavigator();
 function BottomTabStack() {
   const progress = useDrawerProgress();
   const { top } = useSafeAreaInsets();
+  const { width } = useWindowDimensions();
 
   const contianerStyle = useAnimatedStyle(() => {
     return {
       transform: [
-        { translateX: interpolate(progress.value, [0, 1], [0, 75]) },
+        // Translate the Stack by around 16% so that after rotation it doesn't interfer with drawer
+        { translateX: interpolate(progress.value, [0, 1], [0, width * 0.16]) },
         {
           rotateZ: `${interpolate(progress.value, [0, 1], [0, -10])}deg`,
         },
@@ -62,7 +64,7 @@ function BottomTabStack() {
             name="Home"
             component={HomeStack}
             options={{
-              tabBarIcon: ({ color, focused, size }) => {
+              tabBarIcon: ({ color, size }) => {
                 return <AntDesign name="home" size={size} color={color} />;
               },
             }}
@@ -71,7 +73,7 @@ function BottomTabStack() {
             name="Contact"
             component={Contact}
             options={{
-              tabBarIcon: ({ color, focused, size }) => {
+              tabBarIcon: ({ color, size }) => {
                 return (
                   <FontAwesome6 name="contact-card" color={color} size={size} />
                 );
