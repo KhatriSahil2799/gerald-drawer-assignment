@@ -12,7 +12,10 @@
 
 This project demonstrates a **React Native** application built with **Expo**, featuring a **Drawer Navigator** as the primary navigation. It contains a **Bottom Tab Navigator** and nested **Stack Navigators**, with animations powered by **react-native-reanimated**.
 
-### Please find the attached video for your reference
+### Please find the attached video for your reference, recorded in debug mode
+
+https://github.com/user-attachments/assets/736e3868-05b8-48a9-bbc8-9692ed8daea4
+
 
 
 ### Navigation Structure:
