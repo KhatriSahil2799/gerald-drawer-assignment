@@ -14,6 +14,8 @@ import {
   useSafeAreaInsets,
 } from "react-native-safe-area-context";
 import { TOP_DRAWER_Y_TRANSLATION_IN_PX } from "../utils/constants";
+import AntDesign from "@expo/vector-icons/AntDesign";
+import FontAwesome6 from "@expo/vector-icons/FontAwesome6";
 
 const Tab = createBottomTabNavigator();
 
@@ -23,20 +25,20 @@ function BottomTabStack() {
 
   const contianerStyle = useAnimatedStyle(() => {
     return {
-        transform: [
-          { translateX: interpolate(progress.value, [0, 1], [0, 75]) },
-          {
-            rotateZ: `${interpolate(progress.value, [0, 1], [0, -10])}deg`,
-          },
-          {
-            scale: interpolate(progress.value, [0, 1], [1, 0.95]),
-          },
-        ],
-        borderTopStartRadius: interpolate(
-          progress.value,
-          [0, 0.3, 1],
-          [0, 28, 28]
-        ),
+      transform: [
+        { translateX: interpolate(progress.value, [0, 1], [0, 75]) },
+        {
+          rotateZ: `${interpolate(progress.value, [0, 1], [0, -10])}deg`,
+        },
+        {
+          scale: interpolate(progress.value, [0, 1], [1, 0.95]),
+        },
+      ],
+      borderTopStartRadius: interpolate(
+        progress.value,
+        [0, 0.3, 1],
+        [0, 28, 28]
+      ),
     };
   });
 
@@ -56,8 +58,26 @@ function BottomTabStack() {
 
       <Animated.View style={[styles.container, contianerStyle]}>
         <Tab.Navigator screenOptions={{ headerShown: false }}>
-          <Tab.Screen name="Home" component={HomeStack} />
-          <Tab.Screen name="Contact" component={Contact} />
+          <Tab.Screen
+            name="Home"
+            component={HomeStack}
+            options={{
+              tabBarIcon: ({ color, focused, size }) => {
+                return <AntDesign name="home" size={size} color={color} />;
+              },
+            }}
+          />
+          <Tab.Screen
+            name="Contact"
+            component={Contact}
+            options={{
+              tabBarIcon: ({ color, focused, size }) => {
+                return (
+                  <FontAwesome6 name="contact-card" color={color} size={size} />
+                );
+              },
+            }}
+          />
         </Tab.Navigator>
       </Animated.View>
     </>
