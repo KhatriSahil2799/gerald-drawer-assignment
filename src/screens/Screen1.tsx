@@ -1,4 +1,4 @@
-import { View, Text, StyleSheet, Pressable } from "react-native";
+import { View, Text, StyleSheet, TouchableOpacity } from "react-native";
 import React from "react";
 import Header from "../components/Header";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
@@ -21,9 +21,9 @@ const Screen1 = () => {
     <View style={[styles.container, { paddingTop: top }]}>
       <Header title="Screen 1" />
       <View style={styles.content}>
-        <Pressable style={styles.button} onPress={onPress}>
+        <TouchableOpacity style={styles.button} onPress={onPress}>
           <Text style={styles.text}>Go to Screen 2</Text>
-        </Pressable>
+        </TouchableOpacity>
       </View>
     </View>
   );

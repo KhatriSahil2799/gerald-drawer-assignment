@@ -1,6 +1,6 @@
 import { useNavigation } from "@react-navigation/native";
 import React from "react";
-import { Pressable, StyleSheet, Text, View } from "react-native";
+import { TouchableOpacity, StyleSheet, Text, View } from "react-native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { AppNavigationProp } from "../utils/types";
 import Header from "../components/Header";
@@ -14,9 +14,9 @@ const Contact  = () => {
       <Header title="Contact" />
       <View style={styles.content}>
         <Text>Contact Screen</Text>
-        <Pressable style={styles.button} onPress={navigation.goBack}>
+        <TouchableOpacity style={styles.button} onPress={navigation.goBack}>
           <Text style={styles.text}>Go back to Home Stack</Text>
-        </Pressable>
+        </TouchableOpacity>
       </View>
     </View>
   );
