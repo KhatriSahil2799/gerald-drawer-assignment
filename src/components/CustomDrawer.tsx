@@ -1,20 +1,70 @@
 import { View, Text, TouchableOpacity, StyleSheet } from "react-native";
 import { DrawerContentComponentProps } from "@react-navigation/drawer";
 import React from "react";
+import { BottomTabParamList, HomeStackParamList } from "../types/navigation";
+import { getActiveScreen } from "../utils/utils";
 
+// Define menu item type based on your navigation structure
 interface MenuItem {
   label: string;
-  route: keyof TabStackParamList;
+  stack?: "Home"; // These are your bottom tab routes
+  screen?: keyof HomeStackParamList | 'Contact'; // Optional screen within Home stack
   isActive?: boolean;
 }
 
-const CustomDrawer = ({ navigation, }: DrawerContentComponentProps) => {
+const CustomDrawer = ({
+  navigation,
+  state,
+  descriptors,
+}: DrawerContentComponentProps) => {
+  console.log(
+    "🚀 ~ CustomDrawer ~ { navigation, state,descriptors }:",
+    JSON.stringify({ navigation, state, descriptors }, null, 2)
+  );
+
+  const activeScreen = getActiveScreen(state);
+
   const menuItems: MenuItem[] = [
-    { label: "Start", route: "Home", isActive: true },
-    { label: "Your Cart", route: "Cart" },
-    { label: "Favourites", route: "Favourites" },
-    { label: "Your Orders", route: "Orders" },
+    {
+      label: "Home (Screen 1)",
+      stack: "Home",
+      screen: "Screen1",
+      isActive: activeScreen === "Screen1",
+    },
+    {
+      label: "Screen 2",
+      stack: "Home",
+      screen: "Screen2",
+      isActive: activeScreen === "Screen2",
+    },
+    {
+      label: "Contact",
+      screen: "Contact",
+      isActive: activeScreen === "Contact",
+    },
   ];
+
+  const handleNavigation = (item: MenuItem) => {
+    if (item.isActive) {
+      navigation.closeDrawer();
+      return;
+    }
+
+    if (item.stack === "Home" && item.screen) {
+      // Navigate to screens in Home stack
+      navigation.navigate("BottomTabStack", {
+        screen: "Home",
+        params: {
+          screen: item.screen,
+        },
+      });
+    } else {
+      // Navigate to direct bottom tab screens
+      navigation.navigate("BottomTabStack", {
+        screen: item?.screen,
+      });
+    }
+  };
 
   return (
     <View style={styles.drawerContainer}>
@@ -23,15 +73,9 @@ const CustomDrawer = ({ navigation, }: DrawerContentComponentProps) => {
       <View style={styles.menuContainer}>
         {menuItems.map((item) => (
           <TouchableOpacity
-            key={item.route}
+            key={`${item?.stack}-${String(item?.screen || "")}`}
             style={[styles.menuItem, item.isActive && styles.activeMenuItem]}
-            onPress={() => {
-              if (item.isActive) {
-                navigation.closeDrawer();
-              } else {
-                navigation.navigate(item.route);
-              }
-            }}
+            onPress={() => handleNavigation(item)}
           >
             <Text
               style={[styles.menuText, item.isActive && styles.activeMenuText]}
@@ -46,15 +90,17 @@ const CustomDrawer = ({ navigation, }: DrawerContentComponentProps) => {
 
       <TouchableOpacity
         style={styles.menuItem}
-        onPress={() => navigation.navigate("SignOut")}
+        onPress={() => {
+          // You might want to handle sign out logic here
+          // For now, just closing the drawer
+          navigation.closeDrawer();
+        }}
       >
-        <Text style={styles.menuText}>Sign Out</Text>
+        <Text style={styles.menuText}>{'By Sahil khatri'}</Text>
       </TouchableOpacity>
     </View>
   );
 };
-
-export default CustomDrawer;
 
 const styles = StyleSheet.create({
   drawerContainer: {
@@ -71,7 +117,7 @@ const styles = StyleSheet.create({
     marginBottom: 30,
   },
   menuContainer: {
-    marginBottom: "auto",
+    // marginBottom: "auto",
   },
   menuItem: {
     paddingVertical: 15,
@@ -95,3 +141,5 @@ const styles = StyleSheet.create({
     marginVertical: 20,
   },
 });
+
+export default CustomDrawer;
